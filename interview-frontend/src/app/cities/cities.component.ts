@@ -9,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class CitiesComponent implements OnInit {
   cities: any;
 
-  constructor(private http: HttpClient) { }  // inject HttpClient here
-
+  constructor(private http: HttpClient) { }
+  
   ngOnInit(): void {
     this.http.get('http://localhost:3000/cities').subscribe((data) => {
       this.cities = data;
