@@ -1,20 +1,3 @@
-// import { TestBed } from '@angular/core/testing';
-
-// import { CitiesService } from './cities.service';
-
-// describe('CitiesService', () => {
-//   let service: CitiesService;
-
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({});
-//     service = TestBed.inject(CitiesService);
-//   });
-
-//   it('should be created', () => {
-//     expect(service).toBeTruthy();
-//   });
-// });
-
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CitiesService } from './cities.service';
