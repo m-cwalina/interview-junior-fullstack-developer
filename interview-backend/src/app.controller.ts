@@ -11,7 +11,7 @@ export class AppController {
   ): any {
     const citiesData = JSON.parse(readFileSync('../cities.json', 'utf-8'));
     const filteredCities = citiesData.filter((city) =>
-      city.cityName.toLowerCase().includes(search.toLowerCase()),
+      city.cityName.toLowerCase().startsWith(search.toLowerCase()),
     );
 
     const start = (page - 1) * limit;
