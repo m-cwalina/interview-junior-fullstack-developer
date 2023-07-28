@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-cities',
@@ -11,6 +12,7 @@ export class CitiesComponent implements OnInit {
   cities: any;
   page: number = 1;
   limit: number = 5;
+  total: number = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -18,23 +20,25 @@ export class CitiesComponent implements OnInit {
     this.loadCities();
   }
 
+  searchTerm: string = '';
+
   loadCities(): void {
-    this.http.get(`http://localhost:3000/cities?page=${this.page}&limit=${this.limit}`).subscribe((data: any) => {
+    this.http.get(`http://localhost:3000/cities?page=${this.page}&limit=${this.limit}&search=${this.searchTerm}`).subscribe((data: any) => {
       this.cities = data.cities;
+      this.total = data.total;
     }, (error) => {
       console.error('There was an error!', error);
     });
   }
-
-  nextPage(): void {
-    this.page++;
+  
+  onSearch(searchTerm: string): void {
+    this.searchTerm = searchTerm;
     this.loadCities();
   }
 
-  prevPage(): void {
-    if (this.page > 1) {
-      this.page--;
-      this.loadCities();
-    }
+  pageEvent(event: PageEvent): void {
+    this.page = event.pageIndex + 1;
+    this.limit = event.pageSize;
+    this.loadCities();
   }
 }

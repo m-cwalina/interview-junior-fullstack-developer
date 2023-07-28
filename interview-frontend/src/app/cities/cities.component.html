@@ -43,6 +43,8 @@
   }
 </style>
 
+<app-filter (search)="onSearch($event)"></app-filter>
+
 <div class="cities-container">
   <div class="city" *ngFor="let city of cities">
     <div class="title-container">
@@ -57,3 +59,10 @@
     </div>
   </div>
 </div>
+
+<mat-paginator
+  [length]="total"
+  [pageSize]="limit"
+  [pageIndex]="page-1"
+  (page)="pageEvent($event)">
+</mat-paginator>
