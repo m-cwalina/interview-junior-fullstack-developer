@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 import { readFileSync } from 'fs';
 
@@ -6,15 +6,15 @@ import { readFileSync } from 'fs';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
   @Get('cities')
-  getCities(): any {
-    const citiesData = readFileSync('../cities.json', 'utf-8');
-    console.log(citiesData);
-    return JSON.parse(citiesData);
+  getCities(@Query('page') page = 1, @Query('limit') limit = 5): any {
+    const citiesData = JSON.parse(readFileSync('../cities.json', 'utf-8'));
+    const start = (page - 1) * limit;
+    const end = page * limit;
+
+    return {
+      total: citiesData.length,
+      cities: citiesData.slice(start, end),
+    };
   }
 }
