@@ -57,11 +57,23 @@
   overflow: hidden;
   text-overflow: ellipsis;
   }
+  .error {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 35px;
+  }
 </style>
 
 <app-filter (search)="onSearch($event)"></app-filter>
 
-<div class="cities-container">
+<div *ngIf="errorMessage" class="error">
+  {{errorMessage}}
+</div>
+
+<div class="cities-container" *ngIf="!errorMessage">
   <div class="city" *ngFor="let city of cities">
     <div class="title-container">
       <mat-icon class="home-icon">location_city</mat-icon>

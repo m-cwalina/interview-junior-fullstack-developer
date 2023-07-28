@@ -77,7 +77,7 @@ describe('CitiesComponent', () => {
 
     component.onSearch(mockSearchTerm);
 
-    const req = httpMock.expectOne(`http://localhost:3000/cities?page=${component.page}&limit=${component.limit}&search=${component.searchTerm}`);
+    const req = httpMock.expectOne(`http://localhost:3000/cities?page=${component.page}&limit=${component.limit}&search=${encodeURIComponent(component.searchTerm)}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockCities);
 
