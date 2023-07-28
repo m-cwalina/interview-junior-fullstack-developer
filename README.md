@@ -14,9 +14,9 @@
 2. npm install - I have added some modules/dependencies to this application.
 
 * Frontend
- - Run ng serve to start application on localhost:4200
- - Run ng test to test application
+   - Run ng serve to start application on localhost:4200
+   - Run ng test to test application
 
 * Backend
-- Run nest start to start application on localhost:3000
-- Run npx jest to test application
+  - Run nest start to start application on localhost:3000
+  - Run npx jest to test application
